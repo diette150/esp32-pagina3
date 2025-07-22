@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esp32 pagina</title>
+<style>
+    body{
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    #pantalla{
+        width: 300px;
+        height: 120px;
+        border: 4px solid #0f0;
+        background: #000;
+        color: red;
+        font-size: 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+    }
+</style>
+</head>
+<body>
+    <h1>Monitor de Datos del ESP32</h1>
+    <div id="pantalla">
+        <p id="led1">LED1:</p>
+        <p id="led2">LED2:</p>
+        <p id="analog">Analogico:</p>
+    </div>
+    <script>
+        const url="https://tu-backed-render.onrender.com/datos";
+        async function actualizar(){
+            try {
+                const res= await fetch(url);
+                const data= await res.json();
+
+                document.getElementById('led1').textContent='LED1:' + (data.led1 ? 'Encendido' : 'Apagadp');
+                document.getElementById('led2').textContent='LED2:' + (data.led2 ? 'Encendido' : 'Apagadp');
+                document.getElementById('analog').textContent='Analogico:' + Math.round(data.analog* 100 / 1023) + '%';
+            } catch (e) {
+                console.error('Error:', e);
+            }
+        }
+        setInterval(actualizar, 3000);
+    </script>
+</body>
+</html>
