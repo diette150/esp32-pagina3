@@ -17,6 +17,9 @@ app.post('/datos',(req, res)=>{
 app.get('/datos', (req, res)=>{
     res.json(ultimoDato);
 });
+app.get('/', (req, res)=>{
+    res.send('Servidor backend ESP32 corriendo.');
+});
 
 app.listen(PORT, ()=>{
     console.log(`Servidor corriendo en puerto ${PORT}`);
