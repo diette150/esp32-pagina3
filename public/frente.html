@@ -8,20 +8,20 @@
     body{
         font-family: sans-serif;
         text-align: center;
-        margin-top: 50px;
+        margin-top: 30px;
     }
     #pantalla{
         width: 300px;
-        height: 120px;
+        height: 190px;
         border: 4px solid #0f0;
         background: #000;
         color: red;
-        font-size: 22px;
+        font-size: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 20px auto;
+        margin: 15px auto;
     }
 </style>
 </head>
@@ -33,15 +33,15 @@
         <p id="analog">Analogico:</p>
     </div>
     <script>
-        const url="https://tu-backed-render.onrender.com/datos";
+        const url="https://esp32-pagina2.onrender.com/datos";
         async function actualizar(){
             try {
                 const res= await fetch(url);
                 const data= await res.json();
 
-                document.getElementById('led1').textContent='LED1:' + (data.led1 ? 'Encendido' : 'Apagadp');
-                document.getElementById('led2').textContent='LED2:' + (data.led2 ? 'Encendido' : 'Apagadp');
-                document.getElementById('analog').textContent='Analogico:' + Math.round(data.analog* 100 / 1023) + '%';
+                document.getElementById('led1').textContent='LED1:' + (data.led1? 'Encendido' : 'Apagado');
+                document.getElementById('led2').textContent='LED2:' + (data.led2? 'Encendido' : 'Apagado');
+                document.getElementById('analog').textContent='Analogico:' + Math.round(data.analog * 100 / 1023) + '%';
             } catch (e) {
                 console.error('Error:', e);
             }
